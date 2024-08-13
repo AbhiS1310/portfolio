@@ -139,6 +139,26 @@ export const skills = [
   },
 ];
 
+export const experiences = [
+  {
+    id: 0,
+    img: "https://media.licdn.com/dms/image/v2/C510BAQHrIB0srJqHLw/company-logo_200_200/company-logo_200_200/0/1630586257062/enthuons_logo?e=1731542400&v=beta&t=MCBYmoOpPD5azwHO8CYetbbOGXqINXhUHO8yrYktsSY",
+    role: "Backend Developer Intern",
+    company: "Enthuons Technologies Pvt. Ltd.",
+    date: "Jan 2024 - Jul 2024",
+    desc: "Designed and implemented 10+ RESTful APIs using Node.js and Express to support front-end applications and mobile platforms. Ensured APIs handled up to 5,000 requests per minute by optimizing query handling and database interactions. Established middlewares for data validation and error handling, resulting in a 20% reduction in data errors.",
+    skills: [
+      "Docker",
+      "Mongodb",
+      "Expressjs",
+      "Postman",
+      "Git & Github",
+      "JavaScript",
+      "Nodejs"
+    ],
+    doc: "",
+  }
+]
 
 export const education = [
   {
