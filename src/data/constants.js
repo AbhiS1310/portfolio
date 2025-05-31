@@ -11,10 +11,12 @@ export const Bio = {
   name: "Abhishek Chaudahry",
   roles: [
     "Full Stack Developer",
-    "Programmer",
+    "AI/ML Engineer",
+    "Programmer"
   ],
   description:
-    "A passionate and results-oriented individual with expertise in Machine Learning, Web Development, and Data Structures & Algorithms. Proven ability to design, develop, and deploy real-world applications. Eager to leverage skills and knowledge to contribute to a challenging role in the tech industry.",
+    "I'm currently working at a startup, building AI and GenAI solutions that solve real-world problems across healthcare, travel, and content domains. My work focuses on automating complex tasks, improving accuracy, and delivering intelligent systems that make a real impact. I'm passionate about artificial intelligence and always looking forward to learning, growing, and contributing to innovative AI projects.",
+    
   github: "https://github.com/AbhiS1310",
   resume:
     "https://drive.google.com/file/d/18MC6QcycC4HnE7uWRYMgtAIS6apGiThr/view?usp=drive_link",
@@ -142,13 +144,30 @@ export const skills = [
 export const experiences = [
   {
     id: 0,
+    img: "https://media.licdn.com/dms/image/v2/D560BAQGuqOz9OcB3SA/company-logo_200_200/company-logo_200_200/0/1716242429236?e=1753920000&v=beta&t=Wn3J2OdTDQ1Et42hFFpQdMrpje0OG89D9kC_FCyZA5Y",
+    role: "Software Developer",
+    company: "DigiQuanta",
+    date: "Dec 2024 - Present",
+    desc: "Developed a medical data extraction pipeline using Qwen2.5-VL 7B (VLM), Llama 3.1-8B Instruct (LLM), and PaddleOCR, reducing manual entry effort by 90% and requiring minimal human verification. Fine-tuned LayoutLMv3 for document classification, achieving 98% accuracy on medical datasets and reducing manual effort by 90% through automated classification. Enhanced document verification by fine-tuning YOLOv11 for handwritten signature detection (95% accuracy), and built patient risk profiling models with Scikit-learn, enabling targeted care for high-risk patients and predicting rehospitalization risk with 75% accuracy. Improved previous in-place flight and hotel price prediction models by 30% through advanced feature engineering and optimized model selection.",
+    skills: [
+      "Python",
+      "Machine Learning",
+      "Scikit-learn",
+      "Generative AI",
+      "Git & Github",
+      "AWS",
+      "FastAPI",
+    ],
+    doc: "",
+  },
+  {
+    id: 1,
     img: "https://media.licdn.com/dms/image/v2/C510BAQHrIB0srJqHLw/company-logo_200_200/company-logo_200_200/0/1630586257062/enthuons_logo?e=1731542400&v=beta&t=MCBYmoOpPD5azwHO8CYetbbOGXqINXhUHO8yrYktsSY",
     role: "Backend Developer Intern",
     company: "Enthuons Technologies Pvt. Ltd.",
     date: "Jan 2024 - Jul 2024",
     desc: "Designed and implemented 10+ RESTful APIs using Node.js and Express to support front-end applications and mobile platforms. Ensured APIs handled up to 5,000 requests per minute by optimizing query handling and database interactions. Established middlewares for data validation and error handling, resulting in a 20% reduction in data errors.",
     skills: [
-      "Docker",
       "Mongodb",
       "Expressjs",
       "Postman",
