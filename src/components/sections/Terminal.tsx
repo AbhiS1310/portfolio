@@ -19,7 +19,10 @@ export function Terminal() {
     { type: 'output', content: '$ ——————————————————————————————————' },
   ]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Logic Update: Re-enabled refs for internal scrolling and targeted focus
   const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
@@ -27,12 +30,17 @@ export function Terminal() {
     }
   }, []);
 
-  // Auto-scroll to bottom on new history entries
+  // Logic Update: Internal scroll only (affects terminal box, not whole page)
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [history]);
+
+  // Logic Update: Focus input when user clicks anywhere inside the terminal box
+  const handleTerminalClick = () => {
+    inputRef.current?.focus();
+  };
 
   const handleSubmit = async () => {
     const val = input.trim();
@@ -146,6 +154,8 @@ export function Terminal() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          // Logic Update: Clicking the window focuses the input
+          onClick={handleTerminalClick}
         >
           <div className="bg-black/40 border-b border-cyber-lime/20 px-6 py-4 flex items-center gap-3">
             <div className="flex gap-2">
@@ -157,6 +167,7 @@ export function Terminal() {
           </div>
 
           <div 
+            // Logic Update: scrollRef restored for internal scroll tracking
             ref={scrollRef}
             className="bg-black/20 p-6 md:p-8 font-mono text-sm min-h-96 max-h-96 overflow-y-auto scrollbar-hide"
           >
@@ -177,8 +188,9 @@ export function Terminal() {
             <div className="flex items-center gap-2 text-cyber-lime">
               <span>$ {step === 'idle' ? 'user@neural:~$' : 'input:>'}</span>
               <input
+                // Logic Update: inputRef used instead of autoFocus to prevent page jump
+                ref={inputRef}
                 type="text"
-                autoFocus
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
