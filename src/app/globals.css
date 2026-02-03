@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-space-black: #020617;
+  --color-cyber-lime: #bef264;
+  --color-cyber-lime-dark: #a3e635;
+  --color-surface: #0f172a;
+  --color-surface-light: #1e293b;
+  
+  --font-sans: Inter, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-space-black text-white font-sans;
+  }
+
+  ::selection {
+    @apply bg-cyber-lime text-space-black;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-bold;
+  }
+}
+
+@layer components {
+  .glow-text {
+    @apply text-cyber-lime font-bold;
+    text-shadow: 0 0 20px rgba(190, 242, 100, 0.5), 0 0 40px rgba(190, 242, 100, 0.3);
+  }
+
+  .glow-text-lg {
+    @apply text-cyber-lime font-bold;
+    text-shadow: 0 0 30px rgba(190, 242, 100, 0.6), 0 0 60px rgba(190, 242, 100, 0.4);
+  }
+
+  .glassmorphism {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  .glassmorphism-dark {
+    @apply bg-black/30 backdrop-blur-md border border-white/10;
+  }
+
+  .terminal-text {
+    @apply font-mono text-cyber-lime text-sm;
+  }
+
+  .cyber-button {
+    @apply px-4 py-2 rounded-lg bg-cyber-lime text-space-black font-semibold hover:bg-cyber-lime-dark transition-all duration-300;
+  }
+
+  .cyber-button-outline {
+    @apply px-4 py-2 rounded-lg border border-cyber-lime text-cyber-lime font-semibold hover:bg-cyber-lime/10 transition-all duration-300;
+  }
+}
+
+/* Smooth scrolling and animations */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bef264;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a3e635;
+}
