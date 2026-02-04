@@ -55,7 +55,7 @@ export function Hero() {
       >
         {/* Name Badge */}
         <motion.div
-          className="inline-block mb-6"
+          className="inline-block mb-8"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.1, duration: 0.6 }}
@@ -66,21 +66,24 @@ export function Hero() {
         </motion.div>
 
         {/* Main Headline */}
-        <motion.h1
-          className="text-4xl md:text-5xl lg:text-6xl font-black mb-12 leading-tight"
+        <motion.h2
+          className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight"
           style={{ y }}
         >
-          <span className="block glow-text-lg mb-8">
+          <span className="block glow-text-lg mb-6">
             {Bio.name}
           </span>
-          <span className="block bg-gradient-to-r from-cyber-lime via-cyan-400 to-cyber-lime bg-clip-text text-transparent text-3xl md:text-4xl lg:text-5xl">
-            Architecting Autonomous Intelligence
+          <span className="block bg-gradient-to-r from-cyber-lime via-cyan-400 to-cyber-lime bg-clip-text text-transparent text-2xl md:text-3xl lg:text-4xl">
+            <TypewriterText
+            text={"Specializing in Real-time Voice Pipelines & Multimodal RAG"}
+            delay={500}
+          />
           </span>
-        </motion.h1>
+        </motion.h2>
 
         {/* Roles */}
         <motion.div
-          className="flex flex-wrap justify-center gap-3 mb-6"
+          className="flex flex-wrap justify-center gap-3 mb-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
@@ -96,21 +99,21 @@ export function Hero() {
         </motion.div>
 
         {/* Subheadline with Typewriter */}
-        <motion.div
-          className="text-base md:text-lg text-white/80 font-light mb-8 h-12 max-w-3xl mx-auto"
+        {/* <motion.div
+          className="text-base md:text-lg text-white/80 font-light mb-2 h-12 max-w-3xl mx-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
           <TypewriterText
-            text="Specializing in Real-time Voice Pipelines & Multimodal RAG"
+            text={"Specializing in Real-time Voice Pipelines & Multimodal RAG"}
             delay={500}
           />
-        </motion.div>
+        </motion.div> */}
 
         {/* Bio Description */}
         <motion.p
-          className="text-white/70 text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-white/70 text-base md:text-lg max-w-4xl mx-auto mb-3 leading-relaxed"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}

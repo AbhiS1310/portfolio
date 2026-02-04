@@ -506,12 +506,12 @@ export const education = [
 export const Bio = {
   name: "Abhishek Chaudahry",
   roles: [
-    "Full Stack Developer",
     "AI/ML Engineer",
+    "Full Stack Developer",
     "Programmer",
   ],
   description:
-    "I'm currently working at a startup, building AI and GenAI solutions that solve real-world problems across healthcare, travel, and content domains. My work focuses on automating complex tasks, improving accuracy, and delivering intelligent systems that make a real impact. I'm passionate about artificial intelligence and always looking forward to learning, growing, and contributing to innovative AI projects.",
+    "AI Engineer skilled in building generative AI solutions using LLMs, Transformers, and Diffusion models. Experienced in developing and deploying end-to-end AI systems with PyTorch, LangChain, and Hugging Face, including multimodal and creative AI applications. I bring a strong mix of technical depth and innovation to transform advanced AI models into real-world, human-like experiences. I’ve fine-tuned models like LayoutLMv3 and YOLOv11, and integrated Qwen2.5-VL for multimodal understanding in real-world projects such as medical data extraction and creative AI content generation. Beyond model development, I bring strong skills in end-to-end AI system design — from data pipelines to scalable API deployment with FastAPI and Docker. What sets me apart is my ability to merge creativity with technical depth — transforming cutting-edge AI research into production-ready, human-like generative experiences.",
   github: "https://github.com/AbhiS1310",
   resume: "https://drive.google.com/file/d/18MC6QcycC4HnE7uWRYMgtAIS6apGiThr/view?usp=drive_link",
   linkedin: "https://www.linkedin.com/in/abhis1310/",
