@@ -51,7 +51,143 @@ export interface SkillCategory {
 
 export const projects: Project[] = [
   {
-    id: 9,
+    "id": 6,
+    "title": "Voice Scheduling Agent",
+    "date": "January 2026",
+    "description": "Developed a real-time voice-to-voice AI pipeline for automated meeting scheduling. Integrated STT, LLM, and TTS services to enable natural conversation and Google Calendar automation.",
+    "fullDescription": "A sophisticated voice-first AI assistant designed to handle end-to-end meeting scheduling. The system processes raw PCM audio from the browser, converts it to text using AssemblyAI, determines user intent via a LangGraph agent powered by Groq, and responds with low-latency synthesized speech via Cartesia. The agent is capable of gathering attendee details, checking availability, and programmatically creating events via the Google Calendar API.",
+    "image": "voice-agent.png",
+    "tags": ["Python", "LangChain", "LangGraph", "Groq", "AssemblyAI", "Cartesia", "WebSockets", "Google Calendar API"],
+    "category": "Artificial Intelligence",
+    "github": "https://github.com/AbhiS1310/Voice-Assistant.git",
+    "webapp": "",
+    "features": [
+      "Real-time voice-to-voice communication via WebSockets",
+      "Autonomous agentic workflows using LangGraph",
+      "Streaming STT and TTS for low-latency interactions",
+      "Automated Google Calendar event creation",
+      "Support for multi-turn conversational context",
+      "Unified event-driven architecture for frontend/backend sync"
+    ],
+    "challenges": [
+      "Reducing end-to-end latency for natural conversation flow",
+      "Managing asynchronous audio streams without blocking the LLM",
+      "Handling edge cases in date/time parsing via voice",
+      "Synchronizing UI state with the backend event stream"
+    ],
+    "solutions": [
+      "Implemented async generators and a producer-consumer pattern for the pipeline",
+      "Used Groq's high-speed inference to minimize LLM processing time",
+      "Developed custom validation logic within LangGraph for scheduling parameters",
+      "Created a robust WebSocket protocol to handle granular event types (stt_chunk, tts_chunk)"
+    ],
+    "metrics": [
+      { "label": "Pipeline Latency", "value": "<800ms" },
+      { "label": "STT Accuracy", "value": "95%" },
+      { "label": "Scheduling Success", "value": "92%" }
+    ],
+    "keyContributions": [
+      "Designed the multi-stage async generator pipeline",
+      "Built the custom Google Calendar tool integration",
+      "Developed the Svelte-based frontend for real-time feedback",
+      "Configured the WebSocket server to handle concurrent audio streams"
+    ]
+},
+  {
+    id: 0,
+    title: "Text Summarizer",
+    date: "June 2024",
+    description:
+      "Built a text summarization tool using NLP techniques to automatically generate concise summaries of dialogues. Achieved 20% improvement in summary coherence.",
+    fullDescription:
+      "An advanced NLP-based text summarization tool that uses transformer models to generate accurate and coherent summaries of long-form text. The application features both extractive and abstractive summarization techniques, achieving a 20% improvement in summary coherence and relevance through careful data preprocessing and hyperparameter tuning.",
+    image: "summarizer.png",
+    tags: ["Python", "Pandas", "Pytorch", "FastAPI", "Hugging Face Transformers", "AWS", "Docker"],
+    category: "machine learning",
+    github: "https://github.com/AbhiS1310/TextSummarizer",
+    webapp: "",
+    features: [
+      "Abstractive text summarization using transformers",
+      "Extractive summarization fallback",
+      "Support for multiple languages",
+      "Adjustable summary length",
+      "RESTful API with FastAPI",
+      "Docker containerization for easy deployment",
+      "AWS deployment with scalability",
+    ],
+    challenges: [
+      "Improving summary coherence and relevance",
+      "Handling long documents efficiently",
+      "Optimizing model inference time",
+      "Managing memory constraints during inference",
+    ],
+    solutions: [
+      "Fine-tuned Hugging Face transformer models on custom datasets",
+      "Implemented text chunking for long documents",
+      "Used quantization and model distillation for faster inference",
+      "Deployed on AWS with auto-scaling",
+    ],
+    metrics: [
+      { label: "Coherence Score", value: "0.92/1.0" },
+      { label: "Avg Inference", value: "2.5s" },
+      { label: "ROUGE Score", value: "0.45" },
+    ],
+    keyContributions: [
+      "Researched and selected optimal transformer models",
+      "Fine-tuned models on domain-specific data",
+      "Built FastAPI backend",
+      "Deployed on AWS with Docker",
+    ],
+  },
+  {
+    id: 1,
+    title: "Student Performance Predictor",
+    date: "May 2024",
+    description:
+      "Developed a model to predict student performance in math using factors like gender, scores, and test prep data. Achieved robust predictions with comprehensive model evaluation.",
+    fullDescription:
+      "A machine learning model that predicts student math performance based on various factors including gender, previous scores, study hours, and test preparation status. The model was built using scikit-learn with comprehensive data preprocessing, feature engineering, and model evaluation. Achieved high accuracy through careful hyperparameter tuning and cross-validation.",
+    image: "performance.png",
+    tags: ["Python", "Machine learning", "Pandas", "Flask", "Pickle", "AWS", "Docker"],
+    category: "machine learning",
+    github: "https://github.com/AbhiS1310/mlproject",
+    webapp: "",
+    features: [
+      "Multi-factor performance prediction",
+      "Data preprocessing and feature engineering",
+      "Model comparison and selection",
+      "Flask API for predictions",
+      "Docker containerization",
+      "AWS deployment",
+      "Model persistence with Pickle",
+    ],
+    challenges: [
+      "Handling imbalanced dataset",
+      "Feature engineering for better predictions",
+      "Selecting the best model",
+      "Deployment and scalability",
+    ],
+    solutions: [
+      "Used SMOTE for handling imbalanced data",
+      "Performed extensive feature engineering and correlation analysis",
+      "Compared multiple algorithms (Random Forest, XGBoost, SVM)",
+      "Deployed with Docker on AWS EC2",
+    ],
+    metrics: [
+      { label: "Accuracy", value: "92%" },
+      { label: "Precision", value: "0.91" },
+      { label: "Recall", value: "0.89" },
+      { label: "F1-Score", value: "0.90" },
+    ],
+    keyContributions: [
+      "Performed data analysis and preprocessing",
+      "Engineered predictive features",
+      "Trained and evaluated multiple models",
+      "Built Flask API and deployment pipeline",
+    ],
+  },
+  {
+    id: 2,
     title: "Ecommerce Website",
     date: "Jun 2023 - Jul 2023",
     description:
@@ -98,7 +234,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 0,
+    id: 3,
     title: "iNotebook",
     date: "June 2022",
     description:
@@ -140,7 +276,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 1,
+    id: 4,
     title: "NewsApp",
     date: "May 2022",
     description:
@@ -179,99 +315,6 @@ export const projects: Project[] = [
       "Built entire React frontend",
       "Integrated NewsAPI",
       "Implemented responsive design",
-    ],
-  },
-  {
-    id: 2,
-    title: "Text Summarizer",
-    date: "June 2024",
-    description:
-      "Built a text summarization tool using NLP techniques to automatically generate concise summaries of dialogues. Achieved 20% improvement in summary coherence.",
-    fullDescription:
-      "An advanced NLP-based text summarization tool that uses transformer models to generate accurate and coherent summaries of long-form text. The application features both extractive and abstractive summarization techniques, achieving a 20% improvement in summary coherence and relevance through careful data preprocessing and hyperparameter tuning.",
-    image: "summarizer.png",
-    tags: ["Python", "Pandas", "Pytorch", "FastAPI", "Hugging Face Transformers", "AWS", "Docker"],
-    category: "machine learning",
-    github: "https://github.com/AbhiS1310/TextSummarizer",
-    webapp: "",
-    features: [
-      "Abstractive text summarization using transformers",
-      "Extractive summarization fallback",
-      "Support for multiple languages",
-      "Adjustable summary length",
-      "RESTful API with FastAPI",
-      "Docker containerization for easy deployment",
-      "AWS deployment with scalability",
-    ],
-    challenges: [
-      "Improving summary coherence and relevance",
-      "Handling long documents efficiently",
-      "Optimizing model inference time",
-      "Managing memory constraints during inference",
-    ],
-    solutions: [
-      "Fine-tuned Hugging Face transformer models on custom datasets",
-      "Implemented text chunking for long documents",
-      "Used quantization and model distillation for faster inference",
-      "Deployed on AWS with auto-scaling",
-    ],
-    metrics: [
-      { label: "Coherence Score", value: "0.92/1.0" },
-      { label: "Avg Inference", value: "2.5s" },
-      { label: "ROUGE Score", value: "0.45" },
-    ],
-    keyContributions: [
-      "Researched and selected optimal transformer models",
-      "Fine-tuned models on domain-specific data",
-      "Built FastAPI backend",
-      "Deployed on AWS with Docker",
-    ],
-  },
-  {
-    id: 3,
-    title: "Student Performance Predictor",
-    date: "May 2024",
-    description:
-      "Developed a model to predict student performance in math using factors like gender, scores, and test prep data. Achieved robust predictions with comprehensive model evaluation.",
-    fullDescription:
-      "A machine learning model that predicts student math performance based on various factors including gender, previous scores, study hours, and test preparation status. The model was built using scikit-learn with comprehensive data preprocessing, feature engineering, and model evaluation. Achieved high accuracy through careful hyperparameter tuning and cross-validation.",
-    image: "performance.png",
-    tags: ["Python", "Machine learning", "Pandas", "Flask", "Pickle", "AWS", "Docker"],
-    category: "machine learning",
-    github: "https://github.com/AbhiS1310/mlproject",
-    webapp: "",
-    features: [
-      "Multi-factor performance prediction",
-      "Data preprocessing and feature engineering",
-      "Model comparison and selection",
-      "Flask API for predictions",
-      "Docker containerization",
-      "AWS deployment",
-      "Model persistence with Pickle",
-    ],
-    challenges: [
-      "Handling imbalanced dataset",
-      "Feature engineering for better predictions",
-      "Selecting the best model",
-      "Deployment and scalability",
-    ],
-    solutions: [
-      "Used SMOTE for handling imbalanced data",
-      "Performed extensive feature engineering and correlation analysis",
-      "Compared multiple algorithms (Random Forest, XGBoost, SVM)",
-      "Deployed with Docker on AWS EC2",
-    ],
-    metrics: [
-      { label: "Accuracy", value: "92%" },
-      { label: "Precision", value: "0.91" },
-      { label: "Recall", value: "0.89" },
-      { label: "F1-Score", value: "0.90" },
-    ],
-    keyContributions: [
-      "Performed data analysis and preprocessing",
-      "Engineered predictive features",
-      "Trained and evaluated multiple models",
-      "Built Flask API and deployment pipeline",
     ],
   },
   {
