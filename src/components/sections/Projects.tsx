@@ -24,6 +24,8 @@ const itemVariants: Variants = {
   },
 };
 
+const waveHeights = [45, 30, 65, 40, 75, 50, 35, 70, 55, 30, 60, 40];
+
 const WaveformAnimation = () => (
   <div className="flex items-center justify-center gap-1 h-20">
     {Array.from({ length: 12 }).map((_, i) => (
@@ -31,7 +33,7 @@ const WaveformAnimation = () => (
         key={i}
         className="w-1 bg-gradient-to-t from-cyber-lime to-cyan-400 rounded-full"
         style={{
-          height: `${Math.random() * 60 + 20}px`,
+          height: `${waveHeights[i % waveHeights.length]}px`,
           animation: `waveform 0.8s ease-in-out infinite`,
           animationDelay: `${i * 0.067}s`,
         }}
@@ -90,7 +92,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ title, description, icon, span, children, tags }: ProjectCardProps) => (
   <motion.div variants={itemVariants}>
-    <BentoCard span={span as any} title={title} description={description}>
+    <BentoCard span={span} title={title} description={description}>
       <div className="h-full flex flex-col justify-between">
         <div className="flex items-center gap-3 mb-4">
           <div className="text-cyber-lime">{icon}</div>

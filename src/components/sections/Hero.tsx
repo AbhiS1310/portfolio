@@ -1,210 +1,272 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
-import { GlowEffect } from '@/components/ui/GlowEffect';
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
+import { gsap, useGSAP } from '@/lib/gsap';
 import { Bio } from '@/data/portfolio';
-import { Github, Linkedin, ExternalLink } from 'lucide-react';
-
-const TypewriterText = ({ text, delay = 0 }: { text: string; delay?: number }) => {
-  const [displayedText, setDisplayedText] = useState('');
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      let currentIndex = 0;
-      const interval = setInterval(() => {
-        if (currentIndex <= text.length) {
-          setDisplayedText(text.substring(0, currentIndex));
-          currentIndex++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 50);
-
-      return () => clearInterval(interval);
-    }, delay);
-
-    return () => clearTimeout(timeout);
-  }, [text, delay]);
-
-  return (
-    <span>
-      {displayedText}
-      {displayedText.length < text.length && (
-        <span className="inline-block w-1 h-8 ml-2 bg-cyber-lime animate-blink-cursor" />
-      )}
-    </span>
-  );
-};
+import { MagneticButton } from '@/components/ui/MagneticButton';
+import { TelemetryBadge } from '@/components/ui/TelemetryBadge';
+import { WaveformSimulator } from '@/components/ui/WaveformSimulator';
+import {
+  Github,
+  Linkedin,
+  Cpu,
+  Layers,
+  Zap,
+  ShieldCheck,
+  ChevronDown,
+} from 'lucide-react';
 
 export function Hero() {
-  const ref = useRef(null);
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 300], [0, 100]);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const telemetryRef = useRef<HTMLDivElement>(null);
+
+  // GSAP kinetic entrance and telemetry count-up
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      tl.from('.hero-badge', {
+        y: -20,
+        opacity: 0,
+        duration: 0.6,
+      })
+        .from(
+          '.hero-title-line',
+          {
+            y: 40,
+            opacity: 0,
+            stagger: 0.15,
+            duration: 0.8,
+          },
+          '-=0.3'
+        )
+        .from(
+          '.hero-subtext',
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.7,
+          },
+          '-=0.4'
+        )
+        .from(
+          '.hero-telemetry-item',
+          {
+            scale: 0.9,
+            y: 20,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 0.6,
+          },
+          '-=0.4'
+        )
+        .from(
+          '.hero-waveform',
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+          },
+          '-=0.3'
+        )
+        .from(
+          '.hero-cta',
+          {
+            y: 20,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 0.6,
+          },
+          '-=0.5'
+        );
+    },
+    { scope: heroRef }
+  );
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      <GlowEffect intensity={0.8} />
+    <section
+      ref={heroRef}
+      className="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-16 px-4 md:px-8 bg-grid-pattern overflow-hidden"
+    >
+      {/* Radial ambient lighting */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <motion.div
-        ref={ref}
-        className="relative z-10 text-center px-4 md:px-8 max-w-5xl mx-auto"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        {/* Name Badge */}
-        <motion.div
-          className="inline-block mb-8"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
-        >
-          <div className="px-4 py-2 rounded-full bg-cyber-lime/10 border border-cyber-lime/30 text-cyber-lime text-sm font-mono">
-            Welcome to {Bio.name.split(' ')[0]}'s Portfolio
-          </div>
-        </motion.div>
-
-        {/* Main Headline */}
-        <motion.h2
-          className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight"
-          style={{ y }}
-        >
-          <span className="block glow-text-lg mb-6">
-            {Bio.name}
-          </span>
-          <span className="block bg-gradient-to-r from-cyber-lime via-cyan-400 to-cyber-lime bg-clip-text text-transparent text-2xl md:text-3xl lg:text-4xl">
-            <TypewriterText
-            text={"Specializing in Real-time Voice Pipelines & Multimodal RAG"}
-            delay={500}
+      <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
+        {/* Top Telemetry Pill */}
+        <div className="hero-badge mb-6 flex flex-wrap justify-center gap-2">
+          <TelemetryBadge
+            label="SYSTEM"
+            value="AI Systems & GenAI Pipelines"
+            status="optimal"
+            icon={<Cpu size={12} />}
           />
-          </span>
-        </motion.h2>
+          <TelemetryBadge
+            label="STATUS"
+            value="Production Active @ Square Yards"
+            status="active"
+            icon={<ShieldCheck size={12} />}
+          />
+        </div>
 
-        {/* Roles */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-3 mb-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
+        {/* Main Kinetic Headline */}
+        <h1
+          ref={headlineRef}
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] mb-6 font-display"
         >
+          <span className="block hero-title-line text-white/95">
+            Architecting
+          </span>
+          <span className="block hero-title-line bg-gradient-to-r from-cyan-300 via-blue-400 to-cyan-300 bg-clip-text text-transparent glow-text">
+            Autonomous AI
+          </span>
+          <span className="block hero-title-line text-white/80 text-3xl sm:text-5xl md:text-6xl font-extrabold mt-1">
+            Systems & Low-Latency RAG
+          </span>
+        </h1>
+
+        {/* Roles List */}
+        <div className="hero-subtext flex flex-wrap justify-center gap-2.5 mb-6">
           {Bio.roles.map((role, idx) => (
             <span
               key={idx}
-              className="text-sm md:text-base px-3 py-1 bg-white/5 border border-cyber-lime/20 rounded-lg text-cyber-lime/80 font-mono"
+              className="text-xs md:text-sm px-3 py-1 rounded-full card-glass font-mono text-cyan-300/90 border-cyan-500/20"
             >
               {role}
             </span>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Subheadline with Typewriter */}
-        {/* <motion.div
-          className="text-base md:text-lg text-white/80 font-light mb-2 h-12 max-w-3xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-        >
-          <TypewriterText
-            text={"Specializing in Real-time Voice Pipelines & Multimodal RAG"}
-            delay={500}
-          />
-        </motion.div> */}
+        {/* Bio Narrative */}
+        <p className="hero-subtext max-w-3xl text-sm md:text-base text-white/70 leading-relaxed font-sans mb-10">
+          AI Engineer with 2+ years of production experience engineering multi-agent ecosystems,
+          recursive DDML layout engines, and real-time voice intelligence pipelines.
+          Specialized in <strong className="text-white font-medium">LangGraph, FastAPI, FastMCP, and vector retrieval</strong> delivering
+          deterministic AI experiences with sub-millisecond precision.
+        </p>
 
-        {/* Bio Description */}
-        <motion.p
-          className="text-white/70 text-base md:text-lg max-w-4xl mx-auto mb-3 leading-relaxed"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
+        {/* Telemetry HUD Grid (Verified Metrics) */}
+        <div
+          ref={telemetryRef}
+          className="w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-3 mb-10 text-left"
         >
-          {Bio.description}
-        </motion.p>
+          <div className="hero-telemetry-item p-4 rounded-xl card-glass border-cyan-500/20 hover:border-cyan-500/50 transition-all group">
+            <div className="flex items-center justify-between text-xs font-mono text-cyan-400 mb-2">
+              <span className="opacity-70">VOICE PIPELINE</span>
+              <Zap size={13} className="text-cyan-400 group-hover:scale-110 transition-transform" />
+            </div>
+            <div className="text-2xl md:text-3xl font-bold font-display text-white mb-0.5">
+              &lt;400ms
+            </div>
+            <p className="text-[11px] text-white/50 font-mono">
+              WebSockets + Cartesia Latency
+            </p>
+          </div>
 
-        {/* CTA Buttons */}
-        <motion.div
-          className="flex flex-col md:flex-row gap-4 justify-center items-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-        >
-          <motion.a
-            href="#projects"
-            className="cyber-button"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            View Projects →
-          </motion.a>
-          <motion.a
-            href="#contact"
-            className="cyber-button-outline"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Get In Touch
-          </motion.a>
-        </motion.div>
+          <div className="hero-telemetry-item p-4 rounded-xl card-glass border-emerald-500/20 hover:border-emerald-500/50 transition-all group">
+            <div className="flex items-center justify-between text-xs font-mono text-emerald-400 mb-2">
+              <span className="opacity-70">DDML ENGINE</span>
+              <ShieldCheck size={13} className="text-emerald-400 group-hover:scale-110 transition-transform" />
+            </div>
+            <div className="text-2xl md:text-3xl font-bold font-display text-white mb-0.5">
+              0 Errors
+            </div>
+            <p className="text-[11px] text-white/50 font-mono">
+              100% Layout Schema Compliance
+            </p>
+          </div>
 
-        {/* Social Links */}
-        <motion.div
-          className="flex justify-center gap-4"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.8 }}
-        >
-          {Bio.github && (
-            <motion.a
-              href={Bio.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-lg bg-white/5 border border-cyber-lime/20 text-cyber-lime hover:bg-cyber-lime/10 transition-all"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              title="GitHub"
-            >
-              <Github size={20} />
-            </motion.a>
-          )}
-          {Bio.linkedin && (
-            <motion.a
-              href={Bio.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-lg bg-white/5 border border-cyber-lime/20 text-cyber-lime hover:bg-cyber-lime/10 transition-all"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              title="LinkedIn"
-            >
-              <Linkedin size={20} />
-            </motion.a>
-          )}
-          {Bio.resume && (
-            <motion.a
-              href={Bio.resume}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-lg bg-white/5 border border-cyber-lime/20 text-cyber-lime hover:bg-cyber-lime/10 transition-all"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              title="Resume"
-            >
-              <ExternalLink size={20} />
-            </motion.a>
-          )}
-        </motion.div>
+          <div className="hero-telemetry-item p-4 rounded-xl card-glass border-blue-500/20 hover:border-blue-500/50 transition-all group">
+            <div className="flex items-center justify-between text-xs font-mono text-blue-400 mb-2">
+              <span className="opacity-70">SWARM SCALE</span>
+              <Layers size={13} className="text-blue-400 group-hover:scale-110 transition-transform" />
+            </div>
+            <div className="text-2xl md:text-3xl font-bold font-display text-white mb-0.5">
+              20+ Agents
+            </div>
+            <p className="text-[11px] text-white/50 font-mono">
+              Google ADK Autonomous Travel
+            </p>
+          </div>
+
+          <div className="hero-telemetry-item p-4 rounded-xl card-glass border-purple-500/20 hover:border-purple-500/50 transition-all group">
+            <div className="flex items-center justify-between text-xs font-mono text-purple-400 mb-2">
+              <span className="opacity-70">PPTX VECTOR</span>
+              <Cpu size={13} className="text-purple-400 group-hover:scale-110 transition-transform" />
+            </div>
+            <div className="text-2xl md:text-3xl font-bold font-display text-white mb-0.5">
+              100% Fidelity
+            </div>
+            <p className="text-[11px] text-white/50 font-mono">
+              OpenXML Slide Export Pipeline
+            </p>
+          </div>
+        </div>
+
+        {/* Live Interactive Waveform Simulator */}
+        <div className="hero-waveform w-full max-w-2xl mb-10">
+          <WaveformSimulator />
+        </div>
+
+        {/* CTAs & Social Links */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+          <MagneticButton strength={0.3} className="hero-cta">
+            <a href="#architecture" className="cyber-button flex items-center gap-2 text-sm">
+              <span>Inspect Systems Architecture</span>
+              <span>→</span>
+            </a>
+          </MagneticButton>
+
+          <MagneticButton strength={0.3} className="hero-cta">
+            <a href="#projects" className="cyber-button-outline flex items-center gap-2 text-sm">
+              <span>Explore Projects Bento</span>
+            </a>
+          </MagneticButton>
+
+          <div className="hero-cta flex items-center gap-2 ml-2">
+            {Bio.github && (
+              <MagneticButton strength={0.25}>
+                <a
+                  href={Bio.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-xl card-glass text-white/70 hover:text-cyan-400 hover:border-cyan-500/40 transition-all"
+                  title="GitHub Profile"
+                >
+                  <Github size={18} />
+                </a>
+              </MagneticButton>
+            )}
+
+            {Bio.linkedin && (
+              <MagneticButton strength={0.25}>
+                <a
+                  href={Bio.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-xl card-glass text-white/70 hover:text-cyan-400 hover:border-cyan-500/40 transition-all"
+                  title="LinkedIn Profile"
+                >
+                  <Linkedin size={18} />
+                </a>
+              </MagneticButton>
+            )}
+          </div>
+        </div>
 
         {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+        <motion.a
+          href="#architecture"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          className="text-white/40 hover:text-cyan-400 transition-colors flex flex-col items-center gap-1 text-xs font-mono mt-4"
         >
-          <div className="w-6 h-10 border-2 border-cyber-lime rounded-full flex items-center justify-center">
-            <div className="w-1 h-2 bg-cyber-lime rounded-full animate-pulse" />
-          </div>
-        </motion.div>
-      </motion.div>
+          <span>EXPLORE ARCHITECTURE</span>
+          <ChevronDown size={14} />
+        </motion.a>
+      </div>
     </section>
   );
 }

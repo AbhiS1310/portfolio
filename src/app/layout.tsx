@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Neural Portfolio - AI Engineer',
-  description: 'Deep Space Cyber-Minimalist portfolio showcasing AI systems, voice pipelines, and multimodal RAG architectures.',
-  keywords: 'AI, Machine Learning, Voice Processing, RAG, Real-time Systems',
-  authors: [{ name: 'Your Name' }],
+  title: 'Abhishek Chaudhary | AI Engineer — Multi-Agent Systems & GenAI',
+  description: 'AI Engineer specializing in autonomous multi-agent systems, real-time voice AI, enterprise RAG pipelines, and high-throughput microservices.',
+  keywords: 'Abhishek Chaudhary, AI Engineer, Multi-Agent Systems, Generative AI, LangGraph, RAG, Python, FastAPI, Real-time Voice AI',
+  authors: [{ name: 'Abhishek Chaudhary' }],
   openGraph: {
-    title: 'Neural Portfolio - AI Engineer',
-    description: 'Architecting Autonomous Intelligence',
+    title: 'Abhishek Chaudhary | AI Engineer',
+    description: 'Architecting Autonomous Multi-Agent Systems & Enterprise GenAI Pipelines',
     type: 'website',
   },
 };
