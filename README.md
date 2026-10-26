@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# Abhishek Chaudhary — Portfolio
 
-## Getting Started
+A recruiter-facing AI/ML engineering portfolio built with Next.js, React, TypeScript, and Tailwind. The editorial casebook presents employer contributions and personal projects separately, with architecture and limitations in native accessible dialogs.
 
-First, run the development server:
+## Local development
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Use Node.js 20.9 or newer. Install dependencies with `npm ci`, then run `npm run dev` and open the URL printed by Next.js. On Windows with PowerShell script restrictions, use `npm.cmd` and `npx.cmd`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content and design
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `src/data/portfolio.ts`: biography, projects, employment, and skills.
+- `src/components/Portfolio.tsx`: homepage and direct contact interactions.
+- `src/components/ProjectModal.tsx`: native dialog with architecture and contribution details.
+- `src/components/ProjectVisual.tsx`: conceptual vector illustrations, not product screenshots.
+- `src/app/globals.css`: responsive design tokens and component styling.
+- `PRODUCT.md` and `DESIGN.md`: approved product facts and design system.
+- `.impeccable/design.json`: design-system component previews and supplementary tokens.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Keep claims tied to supporting evidence. DesignDeck is pre-release; floor-plan generation is experimental. Employer projects have no public repository links. Personal projects link to their actual repositories. The resume link remains the existing Google Drive URL; replace it only when an updated PDF is available.
 
-## Learn More
+## Checks and static export
 
-To learn more about Next.js, take a look at the following resources:
+Run `npx tsc --noEmit --incremental false`, `npm run lint`, and `npm run build`. The build exports to `out/`. For GitHub Pages, set `NEXT_PUBLIC_BASE_PATH=/portfolio` during the build. The existing GitHub Actions workflow handles the Pages base path; no hosting migration is needed.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Manrope is self-hosted from `public/fonts/` under the included SIL Open Font License. Contact uses direct email, copy-email, and LinkedIn. No EmailJS credentials, backend service, or contact form is required.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Verification status
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+TypeScript, ESLint, root/base-path production builds, static asset references, navigation anchors, and content scans were checked. Live browser visual/interaction verification remains pending: the session's browser automation stopped because it could not confidently determine the active browser URL. Legacy generated setup documents may describe the replaced neon/terminal implementation; current source, PRODUCT.md, and DESIGN.md are authoritative.
